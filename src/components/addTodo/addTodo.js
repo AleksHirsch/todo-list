@@ -23,8 +23,10 @@ export default class AddTodo extends HTMLElement {
     const inputTag = this.shadowRoot.querySelector('input');
     const addBtn = this.shadowRoot.querySelector('#add');
     addBtn.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('addTodoEvent', { detail: inputTag.value }));
-      inputTag.value = '';
+      if (inputTag.value !== '') {
+        document.dispatchEvent(new CustomEvent('addTodoEvent', { detail: inputTag.value }));
+        inputTag.value = '';
+      }
     });
     inputTag.addEventListener('keyup', ({ key }) => {
       if (key === 'Enter') addBtn.click();
