@@ -4,6 +4,25 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 10px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    :host {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    :host {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    :host {
+        width: 60%;
+    }
 }
 
 h1 { 

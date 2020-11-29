@@ -10,11 +10,27 @@ input {
     background-color: transparent;
     border: none;
     border-bottom: 4px solid $dark;
-    font-size: 40px;
+    font-size: 24px;
     outline: none;
     padding-bottom: 10px;
     margin-bottom: 25px;
+    min-width: 50px;
+    max-width: 600px;
+    margin-right: 10px;
 }
+
+@media only screen and (min-width: 1200px) {
+    input {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (min-width: 1600px) {
+    input {
+        font-size: 40px;
+    }
+}
+
 button {
     height: 50px;
     align-self: flex-start;
