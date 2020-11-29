@@ -1,0 +1,68 @@
+@import '../../../styles/variables';
+
+:host {
+    box-shadow: 6px 6px 7px 0px rgba($black, 0.34);
+    border: 1px solid $black;
+    border-radius: 20px 6px 20px 6px;
+    -moz-border-radius: 20px 6px 20px 6px;
+    -webkit-border-radius: 20px 6px 20px 6px;
+    border: 1px solid $black;
+    padding: 1em;
+
+}
+
+.editable {
+    border-bottom: 2px dotted $primary-yellow;
+    outline: none;
+
+    &:focus {
+        outline: 0;
+        border: 2px dotted $primary-yellow;
+        border-radius: 200px;
+    }
+}
+
+.wrapper { 
+    $w: &;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+
+    span { 
+        padding: 10px;
+        
+    }
+
+    .todo-text {
+        padding: 1em;
+    }
+
+
+    .todo-buttons {
+        display: flex;
+        align-items: center;
+
+        .disabled {
+            display: none;
+        }
+
+        svg { 
+            width: 30px;
+            margin-right: 15px;
+
+            &[data-icon="trash-alt"] {
+                color: $primary-red;
+            }
+
+            &[data-icon="edit"] {
+                color: $primary-yellow;
+            }
+
+            &[data-icon="check-circle"] {
+                color: $primary-green;
+            }
+        }
+
+    }
+}

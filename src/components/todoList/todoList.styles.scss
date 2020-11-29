@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+:host {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+h1 { 
+    justify-self: center;
+}
+
+.item:nth-child(odd) { 
+    background-color: $dark;
+    color: $white;
+}

@@ -1,0 +1,28 @@
+@import '../../styles/variables';
+
+:host{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+input {
+    box-sizing: border-box;
+    background-color: transparent;
+    border: none;
+    border-bottom: 4px solid $dark;
+    font-size: 40px;
+    outline: none;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+button {
+    height: 50px;
+    align-self: flex-start;
+    outline: none;
+    border: none;
+    background-color: $dark;
+    border-radius: 10px;
+    color: $white;
+    font-size: 21px;
+    flex-basis: 150px;
+}
