@@ -1,14 +1,14 @@
 {
   "name": "todo-list",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple app with to-do list functionality",
   "private": true,
   "scripts": {
     "start:dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "test": "jest --coverage"
   },
-  "author": "",
+  "author": "Aleks Hirsch",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.9",
