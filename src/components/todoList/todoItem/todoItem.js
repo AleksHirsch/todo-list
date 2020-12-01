@@ -9,6 +9,11 @@ const style = document.createElement('style');
 const template = document.createElement('template');
 
 const icons = [icon(faCheckCircle), icon(faEdit), icon(faTrashAlt)];
+const iconsNames = {
+  ok: '[data-icon="check-circle"]',
+  edit: '[data-icon="edit"]',
+  delete: '[data-icon="trash-alt"]',
+};
 
 template.innerHTML = `<div class="wrapper">
     <div class="todo-text">
@@ -50,19 +55,22 @@ export default class TodoItem extends HTMLElement {
     const spn = this.shadowRoot.querySelector('span');
     const buttons = this.shadowRoot.querySelector('.todo-buttons');
     spn.textContent = this.content;
-    buttons.appendChild(this.appendIcons());
-    const edit = this.shadowRoot.querySelector('[data-icon="edit"]');
-    const ok = this.shadowRoot.querySelector('[data-icon="check-circle"]');
-    this.shadowRoot.querySelector('[data-icon="trash-alt"]').addEventListener('click', () => {
+    buttons.appendChild(this.constructor.appendIcons());
+    this.handleIcons(spn);
+  }
+
+  handleIcons(spn) {
+    const edit = this.shadowRoot.querySelector(iconsNames.edit);
+    const ok = this.shadowRoot.querySelector(iconsNames.ok);
+    this.shadowRoot.querySelector(iconsNames.delete).addEventListener('click', () => {
       document.dispatchEvent(new CustomEvent('deleteTodoEvent', { detail: this.getTodoId() }));
     });
     ok.classList.add('disabled');
-    this.setEdit(edit, spn, ok);
+    this.constructor.setEdit(edit, spn, ok);
     this.setOk(edit, spn, ok);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  setEdit(edit, spn, ok) {
+  static setEdit(edit, spn, ok) {
     edit.addEventListener('click', () => {
       spn.setAttribute('contenteditable', 'true');
       spn.classList.toggle('editable');
@@ -94,8 +102,7 @@ export default class TodoItem extends HTMLElement {
     return id;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  appendIcons() {
+  static appendIcons() {
     const frag = document.createDocumentFragment();
     icons.forEach((ico) => {
       frag.appendChild(ico.node[0]);
