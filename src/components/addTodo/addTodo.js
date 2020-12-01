@@ -5,7 +5,7 @@ const style = document.createElement('style');
 
 template.innerHTML = `
     <input type="text">
-    <button id="add">Add</button>
+    <button id="add-btn">Add</button>
 `;
 
 export default class AddTodo extends HTMLElement {
@@ -20,16 +20,25 @@ export default class AddTodo extends HTMLElement {
   }
 
   connectedCallback() {
-    const inputTag = this.shadowRoot.querySelector('input');
-    const addBtn = this.shadowRoot.querySelector('#add');
-    addBtn.addEventListener('click', () => {
-      if (inputTag.value !== '') {
-        document.dispatchEvent(new CustomEvent('addTodoEvent', { detail: inputTag.value }));
-        inputTag.value = '';
+    const btn = this.shadowRoot.querySelector('#add-btn');
+    const input = this.shadowRoot.querySelector('input');
+    this.constructor.setInputEvent(btn, input);
+    this.constructor.setButtonEvent(btn, input);
+  }
+
+  static setButtonEvent(btn, input) {
+    btn.addEventListener('click', () => {
+      if (input.value !== '') {
+        document.dispatchEvent(new CustomEvent('addTodoEvent', { detail: input.value }));
+        // eslint-disable-next-line no-param-reassign
+        input.value = '';
       }
     });
-    inputTag.addEventListener('keyup', ({ key }) => {
-      if (key === 'Enter') addBtn.click();
+  }
+
+  static setInputEvent(btn, input) {
+    input.addEventListener('keyup', ({ key }) => {
+      if (key === 'Enter') btn.click();
     });
   }
 }
