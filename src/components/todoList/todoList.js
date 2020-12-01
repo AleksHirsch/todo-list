@@ -26,6 +26,10 @@ export default class TodoList extends HTMLElement {
     }
     this.todos = todoService.getTodos();
     this.append();
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
     document.addEventListener('addTodoEvent', (e) => {
       this.todos.push(e.detail);
       this.render();
@@ -36,7 +40,7 @@ export default class TodoList extends HTMLElement {
     });
     document.addEventListener('editTodoEvent', ({ detail: { id, content } }) => {
       this.todos[id] = content;
-      this.render();
+      todoService.saveTodos(this.todos);
     });
   }
 
