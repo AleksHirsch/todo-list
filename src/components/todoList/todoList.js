@@ -1,5 +1,5 @@
 import styles from './todoList.styles.scss';
-import todoService from '../../services/todoService';
+import todoService from '../../services/todoService/todoService';
 
 const style = document.createElement('style');
 const template = document.createElement('template');
